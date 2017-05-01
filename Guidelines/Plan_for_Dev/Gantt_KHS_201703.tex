@@ -1,0 +1,105 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfgantt}
+\usepackage{kotex}
+
+\title{Gantt Charts with the pgfgantt Package}
+\begin{document}
+
+%
+% A fairly complicated example from section 2.9 of the package
+% documentation. This reproduces an example from Wikipedia:
+% http://en.wikipedia.org/wiki/Gantt_chart
+%
+\definecolor{barblue}{RGB}{153,204,254}
+\definecolor{groupblue}{RGB}{51,102,254}
+\definecolor{linkred}{RGB}{165,0,33}
+\renewcommand\sfdefault{phv}
+\renewcommand\mddefault{mc}
+\renewcommand\bfdefault{bc}
+%\setganttlinklabel{s-s}{START-TO-START}
+%\setganttlinklabel{f-s}{FINISH-TO-START}
+%\setganttlinklabel{f-f}{FINISH-TO-FINISH}
+\sffamily
+\begin{ganttchart}[
+    canvas/.append style={fill=none, draw=black!5, line width=.75pt},
+    hgrid style/.style={draw=black!5, line width=.75pt},
+    vgrid={*1{draw=black!5, line width=.75pt}},
+    today=4,
+    today rule/.style={
+      draw=black!64,
+      dash pattern=on 3.5pt off 4.5pt,
+      line width=1.5pt
+    },
+    today label font=\small\bfseries,
+    title/.style={draw=none, fill=none},
+    title label font=\bfseries\footnotesize,
+    title label node/.append style={below=7pt},
+    include title in canvas=false,
+    bar label font=\mdseries\small\color{black!70},
+    bar label node/.append style={left=2cm},
+    bar/.append style={draw=none, fill=black!63},
+    bar incomplete/.append style={fill=barblue},
+    bar progress label font=\mdseries\footnotesize\color{black!70},
+    group incomplete/.append style={fill=groupblue},
+    group left shift=0,
+    group right shift=0,
+    group height=.5,
+    group peaks tip position=0,
+    group label node/.append style={left=.6cm},
+    group progress label font=\bfseries\small,
+    link/.style={-latex, line width=1.5pt, linkred},
+    link label font=\scriptsize\bfseries,
+    link label node/.append style={below left=-2pt and 0pt}
+  ]{1}{13}
+  \gantttitle[
+    title label node/.append style={below left=7pt and -3pt}
+  ]{2016-2017:\quad12}{1}
+  \gantttitlelist{1,...,12}{1} \\
+  
+  \ganttgroup[progress=90]{기획}{1}{4} \\
+  \ganttbar[
+    progress=100,
+    name=plan1
+  ]{주제선정}{1}{1} \\
+  \ganttbar[
+    progress=100,
+    name=plan2
+  ]{개발계획수립, 그룹 구성}{1}{1} \\
+  \ganttbar[
+    progress=80,
+    name=plan3
+  ]{범위결정, 핵심질문 결정}{2}{4} \\[grid]
+  
+  \ganttgroup[progress=0]{개발}{5}{9} \\
+  \ganttbar[progress=0]{지침 검색, 질평가}{5}{5} \\
+  \ganttbar[progress=0]{권고작성}{6}{7} \\
+  \ganttbar[progress=0]{합의}{8}{9} \\[grid]
+  
+  \ganttgroup[progress=0]{최종화}{10}{13} \\
+  \ganttbar[progress=0]{외부 검토}{10}{12} \\
+  \ganttbar[progress=0]{출판및 보급}{13}{13} 
+  
+%  \ganttlink[link type=s-s]{plan1}{plan2}
+%  \ganttlink[link type=f-s]{plan2}{WBS1C}
+%  \ganttlink[
+%    link type=f-f,
+%    link label node/.append style=left
+%  ]{WBS1C}{WBS1D}
+\end{ganttchart}
+
+%
+% A simpler example from the package documentation:
+%
+%\begin{ganttchart}{1}{12}
+%  \gantttitle{2011}{12} \\
+%  \gantttitlelist{1,...,12}{1} \\
+%  \ganttgroup{Group 1}{1}{7} \\
+%  \ganttbar{Task 1}{1}{2} \\
+%  \ganttlinkedbar{Task 2}{3}{7} \ganttnewline
+%  \ganttmilestone{Milestone}{7} \ganttnewline
+%  \ganttbar{Final Task}{8}{12}
+%  \ganttlink{elem2}{elem3}
+%  \ganttlink{elem3}{elem4}
+%\end{ganttchart}
+
+\end{document}
