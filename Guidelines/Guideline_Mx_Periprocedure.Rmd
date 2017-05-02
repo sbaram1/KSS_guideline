@@ -18,7 +18,7 @@ output:
 
 [Plan](Plan_for_Dev/Plan_for_Dev.pdf)
 
-[Time table](Plan_for_Dev/Gantt_KHS_201703.pdf)
+[Time table (KHS example)](Plan_for_Dev/Gantt_KHS_201703.pdf)
 
 *****
 # Scope and key questions
